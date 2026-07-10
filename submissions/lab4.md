@@ -33,3 +33,47 @@
 
 ### Fix-available rate
 Out of the top 10 CVEs, 7 out of 10 have a fix available. This means we must prioritize fixing those vulnurabilities first, as they already have an immediate fix and are too critical to ignore. We can use Grype in a CI workflow and fail builds if high or critical CVEs with immediate fixes are detected (Slide 12 of the lecture).
+
+## Bonus: Sign-Ready SBOM for Lab 8
+
+### CycloneDX schema version
+- `specVersion`: 1.7
+- `bomFormat`: CycloneDX
+
+### Image digest captured
+- `docker inspect ... RepoDigests`: sha256:fd58bdc9745416afce8184ee0666278a436574633ea7880365153a63bfd418b0
+
+### Attestation predicate (paste first 30 lines of juice-shop-attestation.json)
+
+```
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "bkimminich/juice-shop:v20.0.0",
+      "digest": {
+        "sha256": "sha256:fd58bdc9745416afce8184ee0666278a436574633ea7880365153a63bfd418b0"
+      }
+    }
+  ],
+  "predicateType": "https://cyclonedx.org/bom/v1.5",
+  "predicate": {
+    "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
+    "bomFormat": "CycloneDX",
+    "specVersion": "1.7",
+    "serialNumber": "urn:uuid:c9f730f3-8484-493e-b1dd-573b77aff8b3",
+    "version": 1,
+    "metadata": {
+      "timestamp": "2026-07-03T21:55:10+03:00",
+      "tools": {
+        "components": [
+          {
+            "type": "application",
+            "author": "anchore",
+            "name": "syft",
+            "version": "1.46.0"
+          }
+        ]
+      },
+      "component": {
+```
