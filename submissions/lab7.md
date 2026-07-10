@@ -6,8 +6,8 @@
 | Severity | Total | With fix available |
 |----------|------:|------------------:|
 | Critical | 6 | 4 |
-| High | 43 | 42 |
-| **Total** | 49 | 46 |
+| High | 44 | 43 |
+| **Total** | 50 | 47 |
 
 ### Top 10 CVEs with fixes
 | CVE | Severity | Package | Installed | Fix |
